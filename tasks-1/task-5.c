@@ -26,6 +26,5 @@ Wartość 0 oznacza, że osiągnięto koniec pliku (EOF) – nie ma więcej dany
 #include <stdio.h>
 
 int main() {
-    puts("Odpowiedź znajduje się w komentarzu na początku pliku.");
     return 0;
 }
