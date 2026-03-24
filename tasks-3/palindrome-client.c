@@ -77,7 +77,6 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    /* Strip trailing newline so piping works: echo "abc" | ./palindrome-client ... */
     while (query_len > 0 && (buf[query_len - 1] == '\n' || buf[query_len - 1] == '\r')) {
         query_len--;
     }
@@ -96,12 +95,6 @@ int main(int argc, char *argv[]) {
         close_or_warn(sock, "close");
         return 1;
     }
-
-    /* Strip trailing \r\n from server response */
-    while (n > 0 && (resp[n - 1] == '\n' || resp[n - 1] == '\r')) {
-        n--;
-    }
-    resp[n] = '\0';
 
     if (is_valid_response(resp, n)) {
         printf("%s\n", resp);

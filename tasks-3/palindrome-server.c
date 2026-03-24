@@ -9,7 +9,6 @@
 
 #define MAX_UDP 65507
 
-// echo -n "Kajak ma AlA" | ncat -u -q 1 127.0.0.1 20123
 
 static void close_or_warn(int fd, const char *what) {
     if (close(fd) < 0) {
