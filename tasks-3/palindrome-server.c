@@ -31,7 +31,11 @@ static int is_palindrome_word(const char *start, const char *end_inclusive) {
 }
 
 static int validate_and_count(const unsigned char *buf, size_t len, int *out_total, int *out_pal) {
-    if (len == 0) return 1;
+    if (len == 0) {
+        *out_total = 0;
+        *out_pal = 0;
+        return 1;
+    }
 
     if (buf[0] == ' ' || buf[len - 1] == ' ') return 0;
 
@@ -108,7 +112,9 @@ int main(int argc, char *argv[]) {
             reply = "ERROR";
         }
 
-        sendto(sock, reply, strlen(reply), 0, (struct sockaddr *)&client_addr, addr_len);
+        if (sendto(sock, reply, strlen(reply), 0, (struct sockaddr *)&client_addr, addr_len) < 0) {
+            perror("sendto");
+        }
     }
 
     return 0;
