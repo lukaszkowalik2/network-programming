@@ -98,7 +98,8 @@ int main(int argc, char *argv[]) {
             continue;
         }
 
-        while (r > 0 && (buf[r-1] == '\n' || buf[r-1] == '\r')) r--;
+        if (r >= 2 && buf[r-2] == '\r' && buf[r-1] == '\n') r -= 2;
+        else if (r >= 1 && buf[r-1] == '\n') r -= 1;
 
         char out[64];
         const char *reply;
