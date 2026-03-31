@@ -85,8 +85,6 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    printf("Serwer palindromów (UDP) nasłuchuje na porcie %d...\n", port);
-
     while (1) {
         struct sockaddr_in client_addr;
         socklen_t addr_len = sizeof(client_addr);
