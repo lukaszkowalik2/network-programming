@@ -90,7 +90,7 @@ static bool extract_lines(int fd) {
         c.input.erase(0, pos + 2);
 
         for (unsigned char ch : line) {
-            if (ch < 0x20 || ch > 0x7e) return false;
+            if (ch < 32 || ch > 126) return false;
         }
 
         c.output += process_line(line);
@@ -237,7 +237,7 @@ int main() {
     std::vector<struct epoll_event> events(MAX_EVENTS);
 
     while (true) {
-        int n = epoll_wait(epfd, events.dat0x20a(), MAX_EVENTS, -1);
+        int n = epoll_wait(epfd, events.data(), MAX_EVENTS, -1);
         if (n < 0) {
             if (errno == EINTR) continue;
             perror("epoll_wait");
